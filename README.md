@@ -1,14 +1,21 @@
 # Backup
 
-A simple command line tool to backup your files using git
+A simple command line tool to backup your files using git or zip
 
 ## Installation
 
 Install the tool globally using npm:
+
 ```sh
 npm install -g @simondmc/backup
 ```
 
 # Usage
 
-Make sure you have a git repository, then run `backup` or `backup <commit message>` in a terminal.
+## Git Backup
+
+To backup up files using git, make sure you have a git repository, then run `backup` or `backup <commit message>` in a terminal.
+
+## Zip Backup
+
+To backup a folder using zip, navigate to **inside** that folder, open the terminal and run `backup -z` or `backup --zip`.

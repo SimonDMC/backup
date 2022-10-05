@@ -1,20 +1,22 @@
 {
-  "name": "@simondmc/backup",
-  "version": "1.0.0",
-  "description": "A simple command line tool to backup your files using git",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "SimonDMC <simon@simondmc.com> (https://simondmc.com)",
-  "license": "MIT",
-  "bin": {
-    "backup": "./index.js"
-  },
-  "dependencies": {
-    "chalk": "^5.0.1",
-    "child_process": "^1.0.2"
-  }
+    "name": "@simondmc/backup",
+    "version": "1.1.0",
+    "description": "A simple command line tool to backup your files using git",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "SimonDMC <simon@simondmc.com> (https://simondmc.com)",
+    "license": "MIT",
+    "bin": {
+        "backup": "./index.js"
+    },
+    "dependencies": {
+        "chalk": "^5.0.1",
+        "child_process": "^1.0.2",
+        "fs-extra": "^10.1.0",
+        "zip-local": "^0.3.5"
+    }
 }
