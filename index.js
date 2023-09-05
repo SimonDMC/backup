@@ -13,8 +13,7 @@ const day = date.getDate();
 const month = date.getMonth() + 1;
 const year = date.getFullYear().toString().slice(-2);
 const hours = date.getHours() % 12 == 0 ? 12 : date.getHours() % 12;
-const minutes =
-    date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+const minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
 const ampm = date.getHours() >= 12 ? "PM" : "AM";
 const dateString = `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
 
@@ -31,9 +30,7 @@ if (process.argv.includes("-z") || process.argv.includes("--zip")) {
     // copy everything into temporary folder to prepare for zip
     fse.copySync(here, tempBackupPath);
     // append date to zip name
-    const zipName = `${foldername} Backup@${dateString
-        .replaceAll("/", "-")
-        .replaceAll(":", ".")}.zip`;
+    const zipName = `${foldername} Backup@${dateString.replaceAll("/", "-").replaceAll(":", ".")}.zip`;
     // zip temporary folder
     zipper.sync
         .zip(path.resolve(parent, randomID))
@@ -57,15 +54,22 @@ if (process.argv.includes("-z") || process.argv.includes("--zip")) {
             }
         }).on("exit", (code) => {
             if (code == 0) {
-                console.log(
-                    `${chalk.gray(commands[i])} ${chalk.blue("successful")}`
-                );
+                console.log(`${getTimestamp()} ${chalk.gray(commands[i])} ${chalk.green("✓")}`);
                 if (i < commands.length - 1) run(i + 1);
-                else console.log(chalk.green("Backup complete!"));
+                else console.log(`${getTimestamp()} ${chalk.green("Backup Complete!")}`);
             }
         });
     };
 
-    console.log(chalk.yellow("Starting backup..."));
+    console.log(`${getTimestamp()} ${chalk.yellow("Starting backup...")}`);
     run(0);
+}
+
+// [H:MM:SS]
+function getTimestamp() {
+    const date = new Date();
+    const hours = date.getHours();
+    const minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+    const seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+    return chalk.dim(`[${hours}:${minutes}:${seconds}]`);
 }
