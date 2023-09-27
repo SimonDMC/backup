@@ -22,5 +22,5 @@ To backup a folder using zip, navigate to **inside** that folder, open the termi
 
 ## Repository Creation
 
-To initialize a git repository (and immediately push it), run `backup -i <remote url>` or `backup -i <remote url> <commit message>`
+To initialize a git repository (and immediately backup), run `backup -i <remote url>` or `backup -i <remote url> <commit message>`
 in a terminal.
