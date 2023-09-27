@@ -10,7 +10,7 @@ export function initRepo() {
         console.log(chalk.red("No repository URL provided!"));
         return;
     }
-    repoLink = process.argv[2];
+    repoLink = process.argv[3];
 
     // use custom commit message if provided
     let msg;

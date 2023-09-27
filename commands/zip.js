@@ -2,6 +2,7 @@ import path from "path";
 import zipper from "zip-local";
 import fse from "fs-extra";
 import chalk from "chalk";
+import { getZipDateString, getTimestamp } from "../util/time.js";
 
 export function zip() {
     const here = process.cwd();
@@ -13,13 +14,13 @@ export function zip() {
     // copy everything into temporary folder to prepare for zip
     fse.copySync(here, tempBackupPath);
     // append date to zip name
-    const zipName = `${foldername} Backup@${dateString.replaceAll("/", "-").replaceAll(":", ".")}.zip`;
+    const zipName = `${foldername} Backup@${getZipDateString()}.zip`;
     // zip temporary folder
     zipper.sync
         .zip(path.resolve(parent, randomID))
         .compress()
         .save(parent + path.sep + zipName);
-    console.log(chalk.green("Folder zipped to ") + chalk.yellow(zipName));
+    console.log(`${getTimestamp()} ${chalk.green("Folder zipped to")} ${chalk.yellow(zipName)}`);
     // delete temporary folder
     fse.removeSync(path.resolve(parent, randomID));
 }
