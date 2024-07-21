@@ -1,6 +1,7 @@
 import exec from "child_process";
 import chalk from "chalk";
 import { getDateString, getTimestamp } from "../util/time.js";
+import { runCommandHooks } from "../util/command_hooks.js";
 
 export function gitBackup() {
     let msg;
@@ -28,6 +29,9 @@ export function gitBackup() {
             }
         });
     }
+
+    // run command hooks before backing up
+    runCommandHooks();
 
     console.log(`${getTimestamp()} ${chalk.yellow("Starting backup...")}`);
     run(0);
